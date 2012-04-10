@@ -217,11 +217,9 @@ class Ai1ec_Agenda_Widget_Winch extends WP_Widget {
 		$args['subscribe_url']			= AI1EC_EXPORT_URL . $subscribe_filter;
 		
 		// Show it!
-		echo $args['before_widget']
 		
-		if( $title ):
-			echo $before_title . $title . $after_title
-		endif ?>
+
+		?>
 		
 		<div class="ai1ec-agenda-winch-widget-view">
 			<?php if( ! $dates ): ?>
@@ -229,7 +227,17 @@ class Ai1ec_Agenda_Widget_Winch extends WP_Widget {
 					<?php _e( 'There are no upcoming events.', AI1EC_PLUGIN_NAME ) ?>
 				</p>
 			<?php else: ?>
-				<ol>
+				<ul>
+					<li class="ai1ec-title">
+						Featured Events:
+						<a class="ai1ec-calendar-link" href="<?php echo $calendar_url ?>">
+							View Full calendar »
+
+						</a>
+						<?php if( $title ):
+							echo $before_title . $title . $after_title;
+						endif ?>
+					</li>
 					<?php foreach( $dates as $timestamp => $date_info ): ?>
 						<li class="ai1ec-date <?php if( isset( $date_info['today'] ) && $date_info['today'] ) echo 'ai1ec-today' ?>">
 							<h3 class="ai1ec-date-title">
@@ -265,29 +273,12 @@ class Ai1ec_Agenda_Widget_Winch extends WP_Widget {
 							</ol>
 						</li>
 					<?php endforeach ?>
-				</ol>
+				</ul>
 			<?php endif ?>
 			
-			<?php if( $show_calendar_button ): ?>
-				<a class="ai1ec-button ai1ec-calendar-link" href="<?php echo $calendar url ?>">
-					<?php _e( 'View calendar »', AI1EC_PLUGIN_NAME ) ?>
-				</a>
-			<?php endif ?>
+
 			
-			<?php if( $show_subscirbe_buttons ): ?>
-				<div class="ai1ec-subscribe-buttons">
-					<a class="ai1ec-button ai1ec-subscribe" href="<?php echo $subscribe_url ?>" title="<?php _e( 'Subscribe to this calendar using your faborite calendar program(iCal, Outlook, etc.)', AI1EC_PLUGIN_NAME ) ?>" />
-						<?php _e( '✔ Subscribe', AI1EC_PLUGIN_NAME ) ?>
-					</a>
-					<a class="ai1ec-button ai1ec-subscribe-google" target="_blank" href="http://www.google.com/calendar/render?cid=<?php echo urlencode( str_replace( 'webcal://', 'http://', $subscirbe_url ) ) ?>" title="<?php _e( 'Subscribe to this calendar in your Google Calendar', AI1EC_PLUGIN_NAME ) ?>" />
-						<img scr="<?php echo AI1EC_IMAGE_URL ?>/google-calendar.png" />
-						<?php _e( 'Add to Google', AI1EC_PLUGIN_NAME ) ?>
-					</a>
-				</div>
-			<?php endif ?>
 		</div>
-		
-		<?php echo $args['after-widget'] ?>
 		
 		<?php
 	}
