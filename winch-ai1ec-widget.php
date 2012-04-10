@@ -239,9 +239,7 @@ class Ai1ec_Agenda_Widget_Winch extends WP_Widget {
 					<?php foreach( $dates as $timestamp => $date_info ): ?>
 						<li class="ai1ec-date <?php if( isset( $date_info['today'] ) && $date_info['today'] ) echo 'ai1ec-today' ?>">
 							<h3 class="ai1ec-date-title">
-								<div class="ai1ec-month"><?php echo date_i18n( 'M', $timestamp, true ) ?></div>
-								<div class="ai1ec-day"><?php echo date_i18n( 'j', $timestamp, true ) ?></div>
-								<div class="ai1ec-weekday"><?php echo date_i18n( 'D', $timestamp, true ) ?></div>
+								<span class="ai1ec-month"><?php echo date_i18n( 'M', $timestamp, true ) ?></span> <span class="ai1ec-day"><?php echo date_i18n( 'j', $timestamp, true ) ?></span> <span class="ai1ec-weekday"><?php echo date_i18n( 'D', $timestamp, true ) ?></span>
 							</h3>
 							<ol class="ai1ec-date-events">
 								<?php foreach( $date_info['events'] as $category ): ?>
