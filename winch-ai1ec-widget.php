@@ -228,15 +228,13 @@ class Ai1ec_Agenda_Widget_Winch extends WP_Widget {
 				</p>
 			<?php else: ?>
 				<ul>
-					<li class="ai1ec-title">
-						Featured Events:
-						<a class="ai1ec-calendar-link" href="<?php echo $calendar_url ?>">
-							View Full calendar »
-
-						</a>
-						<?php if( $title ):
-							echo $before_title . $title . $after_title;
-						endif ?>
+					<li class="ai1ec-title-header">
+						<header>
+							<h2>Featured Events:</h2>
+							<a class="ai1ec-calendar-link" href="<?php echo $calendar_url ?>">
+								View Full Calendar »
+							</a>
+						</header>
 					</li>
 					<?php foreach( $dates as $timestamp => $date_info ): ?>
 						<li class="ai1ec-date <?php if( isset( $date_info['today'] ) && $date_info['today'] ) echo 'ai1ec-today' ?>">
