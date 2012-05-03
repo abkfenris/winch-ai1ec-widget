@@ -228,37 +228,39 @@ class Ai1ec_Agenda_Widget_Winch extends WP_Widget {
 				</p>
 			<?php else: ?>
 				<ul>
-					<li class="ai1ec-title-header">
+					<li class="ai1ec-winch-title-header">
 						<header>
-							<h2>Featured Events:</h2>
-							<a class="ai1ec-calendar-link" href="<?php echo $calendar_url ?>">
+							<h4>Featured Events:</h4>
+							
+							<a class="ai1ec-calendar-link" href="<?php echo get_bloginfo('wpurl') . '/news/calendar/' ?>">
 								View Full Calendar »
 							</a>
+							
 						</header>
 					</li>
 					<?php foreach( $dates as $timestamp => $date_info ): ?>
-						<li class="ai1ec-date <?php if( isset( $date_info['today'] ) && $date_info['today'] ) echo 'ai1ec-today' ?>">
-							<h3 class="ai1ec-date-title">
-								<span class="ai1ec-month"><?php echo date_i18n( 'M', $timestamp, true ) ?></span> <span class="ai1ec-day"><?php echo date_i18n( 'j', $timestamp, true ) ?></span> <span class="ai1ec-weekday"><?php echo date_i18n( 'D', $timestamp, true ) ?></span>
-							</h3>
-							<ol class="ai1ec-date-events">
+						<li class="ai1ec-winch-date <?php if( isset( $date_info['today'] ) && $date_info['today'] ) echo 'ai1ec-today' ?>">
+							<h5 class="ai1ec-winch-date-title">
+								<span class="ai1ec-winch-month"><?php echo date_i18n( 'M', $timestamp, true ) ?></span> <span class="ai1ec-winch-day"><?php echo date_i18n( 'j', $timestamp, true ) ?></span> <span class="ai1ec-winch-weekday"><?php echo date_i18n( 'D', $timestamp, true ) ?></span>
+							</h5>
+							<ol class="ai1ec-winch-date-events">
 								<?php foreach( $date_info['events'] as $category ): ?>
 									<?php foreach( $category as $event ): ?>
-										<li class="ai1ec-event ai1ec-event-id-<?php echo $event->post_id ?> ai1ec-event-instance-id-<?php echo $event->instance_id ?> <?php if( $event->allday ) echo 'ai1ec-allday' ?>">
+										<li class="ai1ec-winch-event ai1ec-event-id-<?php echo $event->post_id ?> ai1ec-event-instance-id-<?php echo $event->instance_id ?> <?php if( $event->allday ) echo 'ai1ec-allday' ?>">
 										
 											<?php // Insert post ID for use by JavaScript filtering later ?>
 											<input type="hidden" class="ai1ec-post-id" value="<?php echo $event->post_id ?>" />
 											
 											<a href="<?php echo esc_attr( get_permalink( $event->post_id ) ) . $event->instance_id ?>">
 												<?php if( $event->category_colors ): ?>
-													<span class="ai1ec-category-colors"><?php echo $event->category_colors ?></span>
+													<span class="ai1ec-winch-category-colors"><?php echo $event->category_colors ?></span>
 												<?php endif ?>
 												<?php if( ! $event->allday ): ?>
-													<span class="ai1ec-event-time">
+													<span class="ai1ec-winch-event-time">
 														<?php echo esc_html( $event->start_time ) ?>
 													</span>
 												<?php endif ?>
-												<span class="ai1ec-event-title">
+												<span class="ai1ec-winch-event-title">
 													<?php echo esc_html( apply_filters( 'the_title', $event->post->post_title ) ) ?>
 												</span>
 											</a>
